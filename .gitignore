@@ -132,3 +132,6 @@ npm-debug.log
 .vscode/*
 # pycharm
 .idea/
+
+#
+build/
