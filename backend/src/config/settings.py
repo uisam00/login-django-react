@@ -172,5 +172,5 @@ DJOSER = {
 
 }
 
-AUTH_USER_MODEL = 'accounts.UserAccount'
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
