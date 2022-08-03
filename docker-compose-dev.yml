@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  auth_api:
+  api:
     build:
       context: ./backend/images/python
     image: api_auth_python_django_sam
@@ -13,10 +13,23 @@ services:
             python /app/manage.py runserver 0:8000" 
     volumes:
       - ./backend/src:/app
+      - ./app/node_modules
+      
     ports:
       - "8000:8000"
     depends_on:
       - postgres
+
+  web:
+    build: ./frontend
+    image: react_login_pdi_sam
+    container_name:  react_login_pdi_sam_container
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - api
 
   postgres:
     image: postgres
