@@ -3,26 +3,29 @@ import { Link, Redirect } from "react-router-dom"
 import { connect } from 'react-redux'
 import { login } from "../actions/auth";
 
-const Login = ({ login }) => {
+const Login = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({
-        'username': '',
-        'password': ''
+        username: '',
+        password: '' 
     });
 
     const { username, password } = formData;
 
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const onSubmit = e => {
         e.preventDefault();
 
-        login(username, password)
+        login(username, password);
     };
 
+    if (isAuthenticated) {
+        return <Redirect to='/' />
+    }
     return (
         <div className="container mt-5">
             <h1>Login</h1>
-            <p>Faça Login para acessar o sistema</p>
+            <p>Faça Login para accessar o sistema</p>
             <form onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
                     <input 
@@ -59,8 +62,8 @@ const Login = ({ login }) => {
     );
 };
 
-// const mapStateToProps = state => ({
-//     //is authenticated
-// });
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
 
-export default connect(null, { login })(Login);
+export default connect(mapStateToProps, { login })(Login);
