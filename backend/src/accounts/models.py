@@ -44,8 +44,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         help_text='Determina se o usuário está ativo no sistema. \
         Desmarque isso ao invés de deletar o usuário.')
     date_joined = models.DateTimeField('data de criação', default=timezone.now)
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
 
     objects = UserManager()
     class Meta:
