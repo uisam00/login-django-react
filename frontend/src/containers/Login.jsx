@@ -30,7 +30,7 @@ const Login = ({ login, isAuthenticated }) => {
                 <div className="form-group">
                     <input 
                         className="form-control"
-                        type="username"
+                        type="text"
                         placeholder="Nome de usuário"
                         name="username"
                         value={username}

@@ -23,7 +23,7 @@ const App = () => (
                     <Route exact path="/cadastrar" component={Signup} />
                     <Route exact path="/recupera-senha" component={ResetPassword} />
                     <Route exact path="/senha/recuperar/confirmar/:uid/:token" component={ResetPasswordConfirm} />
-                    <Route exact path="/activate/:uid/:token" component={Activate} />
+                    <Route exact path="/ativar/:uid/:token" component={Activate} />
                 </Switch>
             </Layout>
         </Router>
