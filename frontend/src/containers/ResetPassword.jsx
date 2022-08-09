@@ -13,10 +13,10 @@ const ResetPassword = ({ reset_password }) => {
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const onSubmit = e => {
+    const onSubmit = async e =>  {
         e.preventDefault();
 
-        reset_password(email);
+        await reset_password(email);
         setRequestSent(true);
     };
 

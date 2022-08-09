@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
@@ -42,6 +44,7 @@ export default function(state = initialState, action) {
                 refresh: payload.refresh
             }
         case SIGNUP_SUCCESS:
+            toast.success('Um e-mail de confirmação foi enviado')
             return {
                 ...state,
                 isAuthenticated: false
@@ -62,8 +65,11 @@ export default function(state = initialState, action) {
                 user: null
             }
         case LOGIN_FAIL:
+            toast.error('Houve um problema no login, tente de novo')
         case SIGNUP_FAIL:
+            toast.error('Houve um problema no cadastro, tente de novo')
         case LOGOUT:
+            toast.success('Você saiu!')
             localStorage.removeItem('access');
             localStorage.removeItem('refresh');
             return {
@@ -74,11 +80,32 @@ export default function(state = initialState, action) {
                 user: null
             }
         case PASSWORD_RESET_SUCCESS:
+            toast.success('Um e-mail de confirmação foi enviado')
+            return {
+                ...state,
+            }
         case PASSWORD_RESET_FAIL:
+            toast.warning('Esse e-mail não está cadastrado')
+            return {
+                ...state,
+            }
         case PASSWORD_RESET_CONFIRM_SUCCESS:
+            toast.success('Senha recuparada com sucesso!')
+            return {
+                ...state,
+            }
         case PASSWORD_RESET_CONFIRM_FAIL:
+            toast.warning('Esse token se expirou, tente novamente')
+            return {
+                ...state,
+            }
         case ACTIVATION_FAIL:
+            toast.warning('Esse token se expirou, tente novamente')
+            return {
+                ...state,
+            }
         case ACTIVATION_SUCCESS:
+            toast.success('Usuário agora está ativo')
             return {
                 ...state,
             }

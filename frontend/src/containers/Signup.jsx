@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom"
 import { connect } from 'react-redux'
 import { signup } from "../actions/auth";
+import { toast } from 'react-toastify';
 
 const Signup = ({ signup, isAuthenticated }) => {
     const [accountCreated, setAccountCreated] = useState(false);
@@ -17,12 +18,15 @@ const Signup = ({ signup, isAuthenticated }) => {
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
         e.preventDefault();
 
         if(password === re_password){
-            signup(username, email, password, re_password);
+            await signup(username, email, password, re_password);
             setAccountCreated(true);
+        }
+        else{
+            toast.warning('As senhas devem ser iguais')
         }
 
     };

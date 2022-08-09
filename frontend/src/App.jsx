@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Home from './containers/Home'
 import Login from './containers/Login'
 import Signup from './containers/Signup'
@@ -27,6 +30,7 @@ const App = () => (
                 </Switch>
             </Layout>
         </Router>
+        <ToastContainer />
     </Provider>
 );
 

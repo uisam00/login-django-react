@@ -14,13 +14,13 @@ const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
 
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
         e.preventDefault();
 
         const uid = match.params.uid;
         const token = match.params.token;
 
-        reset_password_confirm(uid, token, new_password, re_new_password);
+        await reset_password_confirm(uid, token, new_password, re_new_password);
         setRequestSent(true);
     };
 

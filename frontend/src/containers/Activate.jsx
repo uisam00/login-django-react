@@ -6,11 +6,11 @@ import { activate } from "../actions/auth";
 const Activate = ({ match, activate }) => {
     const [activated, setActivated] = useState(false);
 
-    const activate_account = e => {
+    const activate_account = async e => {
         const uid = match.params.uid;
         const token = match.params.token;
 
-        activate(uid, token);
+        await activate(uid, token);
         setActivated(true);
     };
 
