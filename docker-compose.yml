@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: ./backend/images/python
+    image: api_auth_python_django_sam
+    container_name:  api_auth_system_sam_container
+    command: >
+            bash -c "sleep 10 &&
+            python manage.py makemigrations &&
+            python manage.py migrate &&
+            gunicorn config.wsgi:application --bind 0.0.0.0:8000" 
+    volumes:
+      - ./backend/src:/app
+      - ./app/node_modules
+      
+    expose:
+      - 8000
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    container_name: postgres_auth_system_sam_container
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "auth_system"
+    ports:
+      - "5432:5432"
+
