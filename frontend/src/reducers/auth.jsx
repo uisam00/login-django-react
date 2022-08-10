@@ -66,8 +66,22 @@ export default function(state = initialState, action) {
             }
         case LOGIN_FAIL:
             toast.error('Houve um problema no login, tente de novo')
+            return {
+                ...state,
+                access: null,
+                refresh: null,
+                isAuthenticated: false,
+                user: null
+            }
         case SIGNUP_FAIL:
-            toast.error('Houve um problema no cadastro, tente de novo')
+            toast.error('Username ou  E-mail repetidos, por favor tente de novo')
+            return {
+                ...state,
+                access: null,
+                refresh: null,
+                isAuthenticated: false,
+                user: null
+            }
         case LOGOUT:
             toast.success('Você saiu!')
             localStorage.removeItem('access');

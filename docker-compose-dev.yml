@@ -20,19 +20,6 @@ services:
     depends_on:
       - postgres
 
-  web:
-    build: ./frontend
-    image: react_login_pdi_sam
-    container_name:  react_login_pdi_sam_container
-    ports:
-      - "3000:3000"
-    stdin_open: true
-    tty: true
-    volumes:
-      - ./frontend:/app
-    depends_on:
-      - api
-
   postgres:
     image: postgres
     container_name: postgres_auth_system_sam_container
